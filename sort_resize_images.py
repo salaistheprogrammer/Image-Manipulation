@@ -7,13 +7,25 @@ from colorthief import ColorThief
 
 
 SOURCE_DIR = "X:\Pixel&Mortar\PxM Design Studio\\"
-PATH = "F:\Export\\"
-DEST_PATH = "F:\Export\\square\\"
-PORTRAIT_PATH = os.path.join(PATH, "portrait")
-LANDSCAPE_PATH = os.path.join(PATH, "landscape")
+PATH = ""
+DEST_PATH = ""
+PORTRAIT_PATH = ""
+LANDSCAPE_PATH = ""
 EXTNS = ["png", "jpg", "jpeg"]
 
 DEFAULT_BRAND = ""
+
+def get_brand_from_cmd():
+    # Set up parameters
+    parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-b", "--brand", default=DEFAULT_BRAND,
+                        help="Brand Folder Name to be parsed")
+    args = vars(parser.parse_args())
+
+    # Get brand name from command line
+    brand = args["brand"]
+
+    return brand
 
 
 def get_brand_dir(brand):
@@ -94,14 +106,7 @@ def process_images(model_img_path):
 
 
 if __name__ == "__main__":
-    # Get brand name from command line
-    parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-b", "--brand", default=DEFAULT_BRAND,
-                        help="Brand Folder Name to be parsed")
-    args = vars(parser.parse_args())
-
-    # Set up parameters
-    brand = args["brand"]
+    brand = get_brand_from_cmd()
 
     brand_dir = get_brand_dir(brand)
 
