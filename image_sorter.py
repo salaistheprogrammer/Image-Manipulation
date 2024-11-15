@@ -40,4 +40,4 @@ def sort_images(path):
                 shutil.move(image_path, path_ls)
         
 
-sort_images("D:\Saidhu\Images")
+sort_images("your\folder\path")
